@@ -1,0 +1,70 @@
+# f1 is 1-\delta_\beta
+# f2 is 1-\delta_\alpha
+# yb is y_\beta
+# ya is y_\alpha
+# s_i is s_\beta^{(i)}(y_\alpha)
+# r_i is s_\beta^{(i)}(y_\beta)
+# q_i is s_\alpha^{(i)}(y_\alpha)
+# p_i is s_\alpha^{(i)}(y_\beta)
+
+
+X_b := y_b*f_1;
+                         X_b := y_b f_1
+
+X_aX_b := f_1*y_a*y_b+f_2*p_1*y_a;
+
+              X_aX_b := f_1 y_a y_b + f_2 p_1 y_a
+
+X_bX_aX_b := y_b*(r_1*s_1+y_a*y_b)*f_1+y_a*y_b*p_1*f_2+y_b*s_1*r_2*f_3;
+
+   X_bX_aX_b := y_b (r_1 s_1 + y_a y_b) f_1 + y_a y_b p_1 f_2
+
+      + y_b s_1 r_2 f_3
+
+
+X_aX_bX_aX_b := y_a*y_b*(p_1*q_1+r_1*s_1+y_a*y_b)*f_1+y_a*p_1*(p_1*q_1+p_2*q_2+y_a*y_b)*f_2+y_a*y_b*s_1*r_2*f_3+y_a*p_1*q_2*p_3*f_4;
+   
+	X_aX_bX_aX_b := y_a y_b (p_1 q_1 + r_1 s_1 + y_a y_b) f_1
+
+      	+ y_a p_1 (p_1 q_1 + p_2 q_2 + y_a y_b) f_2
+
+     	 + y_a y_b s_1 r_2 f_3 + y_a p_1 q_2 p_3 f_4
+
+X_bX_aX_bX_aX_b := y_b*((r_1*s_1+y_a*y_b)^2+y_b*y_a*p_1*q_1+r_1*s_1*r_2*s_2)*f_1+y_a*y_b*p_1*(p_1*q_1+p_2*q_2+r_1*s_1+y_a*y_b)*f_2+y_b*s_1*r_2*(r_1*s_1+r_2*s_2+r_3*s_3+y_a*y_b)*f_3+y_a*y_b*p_1*q_2*p_3*f_4+y_b*s_1*r_2*s_3*r_4*f_5;
+                        /                   2                  
+ X_bX_aX_bX_aX_b := y_b \(r_1 s_1 + y_a y_b)  + y_b y_a p_1 q_1
+
+                     \    
+    + r_1 s_1 r_2 s_2/ f_1
+
+    + y_a y_b p_1 (p_1 q_1 + p_2 q_2 + r_1 s_1 + y_a y_b) f_2
+
+    + y_b s_1 r_2 (r_1 s_1 + r_2 s_2 + r_3 s_3 + y_a y_b) f_3
+
+    + y_a y_b p_1 q_2 p_3 f_4 + y_b s_1 r_2 s_3 r_4 f_5
+
+k_3 := r_1*s_1+r_2*s_2+r_3*s_3-s_3*y_a+y_a*y_b;
+
+     k_3 := r_1 s_1 + r_2 s_2 + r_3 s_3 - s_3 y_a + y_a y_b
+
+k_2 := -y_b*(p_1*q_1+p_2*q_2-p_3*q_2-r_2*s_2-r_3*s_3+s_3*y_a);
+
+  k_2 := -y_b (p_1 q_1 + p_2 q_2 - p_3 q_2 - r_2 s_2 - r_3 s_3
+
+     + s_3 y_a)
+k_1 := -r_1*s_1*s_3*(r_3-y_a)-y_a*y_b*q_2*(p_2-p_3)-y_a*s_1*r_2*s_3;
+
+   k_1 := -r_1 s_1 s_3 (-y_a + r_3) - y_a y_b q_2 (p_2 - p_3)
+
+      - y_a s_1 r_2 s_3
+
+
+
+
+simplify(X_aX_b*k_2-X_b*k_1-k_3*X_bX_aX_b+X_bX_aX_bX_aX_b);
+
+    ((s_1 s_3 (f_1 + f_3) r_2 + p_1 p_3 q_2 (f_2 + f_4)) y_a
+
+       + f_5 r_2 r_4 s_1 s_3) y_b
+
+
