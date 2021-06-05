@@ -1,0 +1,57 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Jan  7 21:25:10 2021
+
+@author: Raj
+"""
+
+
+from sympy import Symbol, poly, div, degree_list
+from sympy.abc import x, y
+from sympy import MatrixSymbol, Matrix
+#The xa and xb are the canonical generators of the formal group algebra
+xa = Symbol('x_a')
+xb = Symbol('x_b')
+t = Symbol('t')
+sb1xa = xa+t*xb
+sb2xb = t*xa+(t*t-1)*xb
+sb3xa = (t*t-1)*xa+(t*t-1)*xb
+sb4xb = (t*t-1)*xa+t*xb
+sb5xa = t*xa+xb
+
+S1 = poly(sb1xa*sb2xb*sb3xa*sb4xb*sb5xa,xa,xb)
+S2 = poly(xa*sb2xb*sb3xa*sb4xb*sb5xa,xa,xb)
+S3 = poly(xa*xb*sb3xa*sb4xb*sb5xa,xa,xb)
+S4 = poly(xa*xb*sb1xa*sb4xb*sb5xa,xa,xb)
+S5 = poly(xa*xb*sb1xa*sb2xb*sb5xa,xa,xb)
+S6 = poly(xa*xb*sb1xa*sb2xb*sb3xa,xa,xb)
+S7 = poly(xb*sb1xa*sb2xb*sb3xa*sb4xb,xa,xb)
+
+k5 = S1-S2-S3-S4-S5-S6-S7
+
+for i in [0,1,2,3,4,5]:
+    print(k5.coeff_monomial((xa**i)*(xb**(5-i))))
+    
+    
+print("")
+
+T1 = poly(xa*sb2xb*sb3xa,xa,xb)
+T2 = poly(xa*xb*sb3xa,xa,xb)
+T3 = poly(xa*xb*sb1xa,xa,xb)
+T4 = poly(sb2xb*sb3xa*sb4xb,xa,xb)
+T5 = poly(xb*sb3xa*sb4xb,xa,xb)
+T6 = poly(xb*sb1xa*sb4xb,xa,xb)
+T7 = poly(xa*sb2xb*sb5xa,xa,xb)
+T8 = poly(xa*xb*sb5xa,xa,xb)
+T9 = poly(xa*sb4xb*sb5xa,xa,xb)
+T10 = poly(sb1xa*sb2xb*sb3xa,xa,xb)
+T11 = poly(sb1xa*sb2xb*sb5xa,xa,xb)
+T12 = poly(sb1xa*sb4xb*sb5xa,xa,xb)
+T13 = poly(sb3xa*sb4xb*sb5xa,xa,xb)
+T14 = poly(xb*sb1xa*sb2xb,xa,xb)
+
+
+k3 = -T1-T2-T3-T4-T5-T6-T7-T8-T9+T10+T11+T12+T13-T14
+
+for i in [0,1,2,3]:
+    print(k3.coeff_monomial((xa**i)*(xb**(3-i))))
